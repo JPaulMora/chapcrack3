@@ -60,7 +60,7 @@ class MppeStateManager:
             stateSetter(sessionKey, packet.getCounter())
             return self._decryptPacket(packet, sessionKey)
         else:
-            print "Old packet: %s" % packet.getCounter()
+            print("Old packet: %s" % packet.getCounter())
             return None
 
     def _decryptPacket(self, packet, sessionKey):

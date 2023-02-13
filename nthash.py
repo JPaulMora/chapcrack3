@@ -11,6 +11,6 @@ __author__    = "Moxie Marlinspike"
 __license__   = "GPLv3"
 __copyright__ = "Copyright 2012, Moxie Marlinspike"
 
-print "Hashing: %s" % sys.argv[1]
+print("Hashing: %s" % sys.argv[1])
 hash = nthash.raw_nthash(sys.argv[1])
-print binascii.hexlify(hash)
+print(binascii.hexlify(hash))

@@ -36,7 +36,7 @@ setup  (name             = 'chapcrack',
         install_requires = REQUIRES,
 )
 
-print "Cleaning up..."
+print("Cleaning up...")
 if os.path.exists("build/"):
     shutil.rmtree("build/")
 

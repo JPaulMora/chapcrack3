@@ -43,7 +43,7 @@ class K3Cracker:
                 sys.stdout.write(".")
                 sys.stdout.flush()
 
-            results = pool.map(CheckKeyPartial(plaintext, ciphertext, b1), range(0, 256))
+            results = pool.map(CheckKeyPartial(plaintext, ciphertext, b1), list(range(0, 256)))
 
             for result in results:
                 if result is not None:

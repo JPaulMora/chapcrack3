@@ -38,7 +38,7 @@ class HelpCommand:
     @staticmethod
     def printGeneralUsage(message):
         if message:
-            print ("Error: %s\n" % message)
+            print(("Error: %s\n" % message))
 
         sys.stdout.write(
             """chapcrack.py

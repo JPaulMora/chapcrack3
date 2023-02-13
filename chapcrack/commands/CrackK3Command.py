@@ -35,8 +35,8 @@ class CrackK3Command(Command):
 
         assert(result is not None)
 
-        print ""
-        print "Found K3: %s" % binascii.hexlify(result)
+        print("")
+        print("Found K3: %s" % binascii.hexlify(result))
 
     def _getPlaintext(self):
         plaintext = self._getOptionValue("-p")

@@ -36,7 +36,7 @@ class ParseCommand(Command):
 
         for server in complete:
             for client in complete[server]:
-                print "Got completed handshake [%s --> %s]" % (client, server)
+                print("Got completed handshake [%s --> %s]" % (client, server))
 
                 c1, c2, c3 = complete[server][client].getCiphertext()
                 plaintext  = complete[server][client].getPlaintext()
@@ -47,22 +47,22 @@ class ParseCommand(Command):
 
     def _printParameters(self, username, plaintext, c1, c2, c3, k3):
         if username is not None:
-            print "                   User = %s" % username
+            print("                   User = %s" % username)
 
-        print "                     C1 = %s" % c1.encode("hex")
-        print "                     C2 = %s" % c2.encode("hex")
-        print "                     C3 = %s" % c3.encode("hex")
-        print "                      P = %s" % plaintext.encode("hex")
+        print("                     C1 = %s" % c1.encode("hex"))
+        print("                     C2 = %s" % c2.encode("hex"))
+        print("                     C3 = %s" % c3.encode("hex"))
+        print("                      P = %s" % plaintext.encode("hex"))
 
         if k3 is not None:
-            print "                     K3 = %s" % k3.encode("hex")
-            print "CloudCracker Submission = $99$%s" % base64.b64encode("%s%s%s%s" % (plaintext, c1, c2, k3[0:2]))
+            print("                     K3 = %s" % k3.encode("hex"))
+            print("CloudCracker Submission = $99$%s" % base64.b64encode("%s%s%s%s" % (plaintext, c1, c2, k3[0:2])))
 
     def _getK3(self, plaintext, ciphertext):
         if not self._containsOption("-n"):
             sys.stdout.write("Cracking K3...")
             k3 = K3Cracker().crack(plaintext, ciphertext, True)
-            print ""
+            print("")
 
             return k3
 

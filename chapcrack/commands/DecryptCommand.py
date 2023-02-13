@@ -42,7 +42,7 @@ class DecryptCommand(Command):
                 writer.writepkt(decryptedPacket)
                 count += 1
 
-        print "Wrote %d packets." % count
+        print("Wrote %d packets." % count)
 
     def _getNtHash(self):
         nthash = self._getOptionValue("-n")
