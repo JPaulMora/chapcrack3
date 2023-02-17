@@ -1,5 +1,7 @@
-chapcrack
+chapcrack3
 =================
+
+Hey there! I used this tool and decided to update it for Python3 (Only the RADIUS command), with this I also made it write out hashes for hashcat mode 14000 since cloudcracker.com is now dead. Enjoy.. I hope :)
 
 A tool for parsing and decrypting MS-CHAPv2 network handshakes.
 
