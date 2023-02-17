@@ -49,14 +49,20 @@ class ParseCommand(Command):
         if username is not None:
             print("                   User = %s" % username)
 
-        print("                     C1 = %s" % c1.encode("hex"))
-        print("                     C2 = %s" % c2.encode("hex"))
-        print("                     C3 = %s" % c3.encode("hex"))
-        print("                      P = %s" % plaintext.encode("hex"))
+        print("                     C1 = %s" % c1.hex())
+        print("                     C2 = %s" % c2.hex())
+        print("                     C3 = %s" % c3.hex())
+        print("                      P = %s" % plaintext.hex())
 
         if k3 is not None:
-            print("                     K3 = %s" % k3.encode("hex"))
-            print("CloudCracker Submission = $99$%s" % base64.b64encode("%s%s%s%s" % (plaintext, c1, c2, k3[0:2])))
+            print("                     K3 = %s" % k3.hex())
+            concat = plaintext + c1 + c2 + k3[0:2]
+            b64 = base64.b64encode(concat)
+
+            print(f"CloudCracker Submission = $99${b64.decode()}")
+            print("Hashcat Submission:")
+            print(f"{c1.hex()}:{plaintext.hex()}")
+            print(f"{c2.hex()}:{plaintext.hex()}")
 
     def _getK3(self, plaintext, ciphertext):
         if not self._containsOption("-n"):

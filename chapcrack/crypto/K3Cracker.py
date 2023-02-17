@@ -8,20 +8,27 @@ This class uses the python 'multiprocessing' module to iterate
 over the 2^16 possibilities and return K3.
 """
 from multiprocessing import Pool
-from passlib.utils import des
+from passlib.crypto import des
 import sys
+# import traceback
 
 __author__    = "Moxie Marlinspike"
 __license__   = "GPLv3"
 __copyright__ = "Copyright 2012, Moxie Marlinspike"
 
 def checkKey(plaintext, ciphertext, b1, b2):
-    keyCandidateBytes = chr(b1) + chr(b2) + (chr(0x00) * 5)
-    keyCandidate      = des.expand_des_key(keyCandidateBytes)
-    result            = des.des_encrypt_block(keyCandidate, plaintext)
+    # try:
+    keyCandidateBytes = (b1).to_bytes(1,byteorder="little") + (b2).to_bytes(1,byteorder="little") + (0).to_bytes(5,byteorder="little")
+    keyCandidate = des.expand_des_key(keyCandidateBytes)
+
+    result = des.des_encrypt_block(keyCandidate, plaintext)
 
     if result == ciphertext:
         return keyCandidateBytes
+    # except:
+    #     print(f"{keyCandidateBytes} {len(keyCandidateBytes)}\n")
+    #     traceback.print_exc()
+    #     raise
 
 class CheckKeyPartial(object):
 
